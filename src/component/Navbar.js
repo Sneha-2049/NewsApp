@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import {
   Link
 } from "react-router-dom"
@@ -15,6 +15,7 @@ function Navbar() {
       })
     })
   })
+  const [inputValue, setInputValue] = React.useState("");
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
       <div className="container-fluid">
@@ -49,7 +50,7 @@ function Navbar() {
             </li>
           </ul>
           <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search"  aria-label="Search" value='us'/>
+            <input className="form-control me-2" type="search"  aria-label="Search" value='us' onChange={(e) => setInputValue(e.target.value)}/>
             <button className="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>

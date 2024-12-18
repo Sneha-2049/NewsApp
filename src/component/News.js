@@ -3,7 +3,7 @@ import Spinner from './Spinner';
 function News(props) {
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(1);
-  const [pagesize, setPagesize] = useState(props.pagesize);
+  const pagesize = props.pagesize;
   const [totalResults, setTotalResults] = useState(0);
   const [loading, setLoading] = useState(true)
   document.title = `${(props.category).toUpperCase()}-NewsMonkey`
@@ -20,7 +20,6 @@ function News(props) {
         }
 
         const data = await result.json();
-        console.log(data)
         setLoading(false)
         setArticles(data.articles); // Set the articles in state
         setTotalResults(data.totalResults)
@@ -30,7 +29,7 @@ function News(props) {
     };
 
     fetchData();
-  }, [page]);
+  }, [pagesize, props.category, props.country, page]);
   const handlePrev = () => {
     setLoading(true)
     setPage(page - 1)
@@ -72,7 +71,7 @@ function News(props) {
       </div>
       <div className="d-flex justify-content-around">
         <button disabled={page <= 1} onClick={handlePrev} type="button" className="btn btn-dark">&larr; Prev</button>
-        <button disabled={articles.length == 0 || page + 1 > Math.ceil(totalResults / 2)} onClick={handleNext} type="button" className="btn btn-dark">Next &rarr;</button>
+        <button disabled={articles.length === 0 || page + 1 > Math.ceil(totalResults / 2)} onClick={handleNext} type="button" className="btn btn-dark">Next &rarr;</button>
       </div>
     </>
   );
