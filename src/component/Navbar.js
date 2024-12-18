@@ -15,7 +15,7 @@ function Navbar() {
       })
     })
   })
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState("us");
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
       <div className="container-fluid">
@@ -50,7 +50,7 @@ function Navbar() {
             </li>
           </ul>
           <form className="d-flex" role="search">
-            <input className="form-control me-2" type="search"  aria-label="Search" value='us' onChange={(e) => setInputValue(e.target.value)}/>
+            <input className="form-control me-2" type="search"  aria-label="Search" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
             <button className="btn btn-outline-success" type="submit">Search</button>
           </form>
         </div>
