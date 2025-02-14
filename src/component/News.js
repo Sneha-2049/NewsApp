@@ -7,7 +7,6 @@ function News(props) {
   const [totalResults, setTotalResults] = useState(0);
   const [loading, setLoading] = useState(true)
   document.title = `${(props.category).toUpperCase()}-NewsMonkey`
-
   const apiKey = '833f109ea5eb471c8380affd616f5e6e'
 
   useEffect(() => {
@@ -69,10 +68,11 @@ function News(props) {
           </div>
         ))}
       </div>
-      <div className="d-flex justify-content-around">
+      {!loading && articles.length > 0 && <div className="d-flex justify-content-around">
         <button disabled={page <= 1} onClick={handlePrev} type="button" className="btn btn-dark">&larr; Prev</button>
-        <button disabled={articles.length === 0 || page + 1 > Math.ceil(totalResults / 2)} onClick={handleNext} type="button" className="btn btn-dark">Next &rarr;</button>
+        <button disabled={articles.length === 0 || page === Math.ceil(totalResults / props.pagesize)} onClick={handleNext} type="button" className="btn btn-dark">Next &rarr;</button>
       </div>
+      }
     </>
   );
 }
